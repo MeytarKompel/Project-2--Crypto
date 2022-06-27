@@ -34,7 +34,7 @@ fetch(`https://api.coingecko.com/api/v3/coins/`, {
     document.getElementById("mainBox").innerHTML = htmlCards.join("");
   });
 
-// Fetching coins and show the relevent info by clicking "More Info" button
+// Fetching coins and show the relevant info by clicking "More Info" button
 function moreInfoData(id, symbol) {
   console.log(id, symbol);
   loadSpinner.classList.remove("hidden");
@@ -80,7 +80,10 @@ function addToggledCoins(symbol, id) {
 
 function checkCoinsArray(liveCoinsToShow, symbol, id) {
   const toggleCheck = document.getElementById(`toggleCheck${id}`);
-  const coin = { id, symbol };
+  const coin = {
+    id,
+    symbol,
+  };
   console.log(coin);
   if (toggleCheck.getAttribute("aria-checked") == "false") {
     if (liveCoinsToShow.length > 4) {
@@ -104,8 +107,7 @@ var exmpModal = new bootstrap.Modal(document.getElementById("coinsModal"));
 function showModal(liveCoinsToShow) {
   console.log(liveCoinsToShow);
   liveCoinsToShow.map((i) => {
-    modalBody.innerHTML += 
-    `<div id="cryptoCurrencyCard" class="card" style="width: 18rem;">
+    modalBody.innerHTML += `<div id="cryptoCurrencyCard" class="card" style="width: 18rem;">
       <div class="card-body">
       <div class="form-check form-switch">
         <input onclick="addToggledCoins('${i.symbol}', '${i.id}')" class="form-check-input" type="checkbox" role="switch" id="toggleCheck${i.id}" aria-checked="true" checked>
@@ -133,7 +135,7 @@ function searchCoin() {
   coinToShow.innerHTML += `<div id="cryptoCurrencyCard" class="card" style="width: 18rem;">
   <div class="card-body">
   <div class="form-check form-switch">
-     <input onclick="addToggledCoins('${i.symbol}', '${i.id}')" class="form-check-input" type="checkbox" role="switch" id="toggleCheck${i.id}" aria-checked="false">
+     <input onclick="addToggledCoins('${symbol}', '${id}')" class="form-check-input" type="checkbox" role="switch" id="toggleCheck${i.id}" aria-checked="false">
      <label class="form-check-label" for="toggleCheck${i.id}"></label>
    </div>
     <h5 class="card-title">${i.symbol}</h5>
@@ -147,10 +149,6 @@ function searchCoin() {
   console.log(coinToShow);
 }
 
-
-function saveChanegs(liveCoinsToShow, coin){
-const coinsIndex = liveCoinsToShow
-console.log(coinsIndex)
-// liveCoinsToShow.splice(coinsIndex, 1);
+function closeModal(){
 
 }
