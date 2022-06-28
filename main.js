@@ -135,18 +135,17 @@ function searchCoin() {
   coinToShow.innerHTML += `<div id="cryptoCurrencyCard" class="card" style="width: 18rem;">
   <div class="card-body">
   <div class="form-check form-switch">
-     <input onclick="addToggledCoins('${symbol}', '${id}')" class="form-check-input" type="checkbox" role="switch" id="toggleCheck${i.id}" aria-checked="false">
-     <label class="form-check-label" for="toggleCheck${i.id}"></label>
+     <input onclick="addToggledCoins('${foundedCoin.symbol}', '${foundedCoin.id}')" class="form-check-input" type="checkbox" role="switch" id="toggleCheck${foundedCoin.id}" aria-checked="false">
+     <label class="form-check-label" for="toggleCheck${foundedCoin.id}"></label>
    </div>
-    <h5 class="card-title">${i.symbol}</h5>
-    <p class="card-text">${i.id}</p>
-    <button onclick="moreInfoData('${i.id}', '${i.symbol}')" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#${i.symbol}" aria-expanded="false" aria-controls="${i.symbol}">
+    <h5 class="card-title">${foundedCoin.symbol}</h5>
+    <p class="card-text">${foundedCoin.id}</p>
+    <button onclick="moreInfoData('${foundedCoin.id}', '${foundedCoin.symbol}')" class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#${foundedCoin.symbol}" aria-expanded="false" aria-controls="${foundedCoin.symbol}">
       More Info
     </button>
-    <div class="collapse" id="${i.symbol}"></div>
+    <div class="collapse" id="${foundedCoin.symbol}"></div>
   </div>
 </div>`;
-  console.log(coinToShow);
 }
 
 function closeModal(){
