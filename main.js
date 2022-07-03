@@ -96,7 +96,8 @@ function checkCoinsArray(liveCoinsToShow, symbol, id) {
     return;
   }
 
-  if (liveCoinsToShow.length > 4) {
+
+  if (liveCoinsToShow.length >= 5) {
     // toggleCheck.removeAttribute("aria-checked");
     showModal(liveCoinsToShow, coin);
   } else {
@@ -131,7 +132,6 @@ function showModal(liveCoinsToShow) {
 
 function removeCoin(id, symbol) {
   let coinInModal = document.getElementById(`coinToggeledInModal${id}`);
-
   const coin = {
     id,
     symbol,
@@ -140,26 +140,32 @@ function removeCoin(id, symbol) {
   const coinsIndex = liveCoinsToShow.findIndex((c) => c.id === id);
   console.log(coinsIndex);
 
-  if (coinsIndex === coinsIndex) {
-      liveCoinsToShow.splice(coinsIndex, 1);
-      console.log(liveCoinsToShow);
-      return
-    }
-     else {
-    liveCoinsToShow.push(coin);
+  if (coinsIndex !== -1) {
+    liveCoinsToShow.splice(coinsIndex, 1);
+    coinInModal.setAttribute("aria-checked", "false");
+    console.log(liveCoinsToShow);
+    return;
+
+  } else {
     coinInModal.setAttribute("aria-checked", "true");
+    liveCoinsToShow.push(coin);
+
   }
+
   console.log(liveCoinsToShow);
+}
+
+
 
 function closeModal() {}
 
 // Searching for specific coin
-const coinToShow = "";
+let coinToShow = "";
 function searchCoin() {
   const coinToSearch = coinSearch.value;
   const foundedCoin = cryptoArray.find((coin) => coin.symbol === coinToSearch);
   console.log(foundedCoin);
-  coinToShow.innerHTML += `<div id="cryptoCurrencyCard" class="card" style="width: 18rem;">
+  coinToShow = `<div id="searchedCoin" class="card" style="width: 18rem;">
   <div class="card-body">
   <div class="form-check form-switch">
      <input onclick="addToggledCoins('${foundedCoin.symbol}', '${foundedCoin.id}')" class="form-check-input" type="checkbox" role="switch" id="toggleCheck${foundedCoin.id}" aria-checked="false">
@@ -173,6 +179,6 @@ function searchCoin() {
     <div class="collapse" id="${foundedCoin.symbol}"></div>
   </div>
 </div>`;
+  document.getElementById("mainBox").innerHTML = coinToShow;
   console.log(coinToShow);
-}
 }
